@@ -31,7 +31,7 @@ $app->get('/', function($req, $res)
 });
 
 // buat route untuk webhook
-$app->post('/webhook', function ($request, $response) use ($bot, $pass_signature)
+$app->post('https://kuli-ah.herokuapp.com/index.php/webhook', function ($request, $response) use ($bot, $pass_signature)
 {
     // get request body and line signature header
     $body        = file_get_contents('php://input');
@@ -54,6 +54,37 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
     }
 
     // kode aplikasi nanti disini
+    $data = json_decode($body, true);
+    if(is_array($data['events'])){
+        foreach ($data['events'] as $event)
+        {
+            if ($event['type'] == 'message')
+            {
+                if($event['message']['type'] == 'text')
+                {
+                    // send same message as reply to user
+                    $result = $bot->replyText($event['replyToken'], $event['message']['text']);
+
+                    $textMessageBuilder1 = new TextMessageBuilder('ini pesan balasan pertama');
+                    $textMessageBuilder2 = new TextMessageBuilder('ini pesan balasan kedua');
+                    $stickerMessageBuilder = new StickerMessageBuilder(1, 106);
+
+                    $multiMessageBuilder = new MultiMessageBuilder();
+                    $multiMessageBuilder->add($textMessageBuilder1);
+                    $multiMessageBuilder->add($textMessageBuilder2);
+                    $multiMessageBuilder->add($stickerMessageBuilder);
+
+                    $bot->replyMessage($replyToken, $multiMessageBuilder);
+
+                    // or we can use replyMessage() instead to send reply message
+                    // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                    // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                    return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+                }
+            }
+        }
+    }
 
 });
 
