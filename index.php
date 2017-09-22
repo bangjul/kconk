@@ -63,18 +63,7 @@ $app->post('https://kuli-ah.herokuapp.com/index.php/webhook', function ($request
                 if($event['message']['type'] == 'text')
                 {
                     // send same message as reply to user
-                    $result = $bot->replyText($event['replyToken'], $event['message']['text']);
-
-                    $textMessageBuilder1 = new TextMessageBuilder('ini pesan balasan pertama');
-                    $textMessageBuilder2 = new TextMessageBuilder('ini pesan balasan kedua');
-                    $stickerMessageBuilder = new StickerMessageBuilder(1, 106);
-
-                    $multiMessageBuilder = new MultiMessageBuilder();
-                    $multiMessageBuilder->add($textMessageBuilder1);
-                    $multiMessageBuilder->add($textMessageBuilder2);
-                    $multiMessageBuilder->add($stickerMessageBuilder);
-
-                    $bot->replyMessage($replyToken, $multiMessageBuilder);
+                    $bot->replyText($replyToken, 'ini pesan balasan');
 
                     // or we can use replyMessage() instead to send reply message
                     // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
