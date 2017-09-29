@@ -12,8 +12,8 @@ use \LINE\LINEBot\SignatureValidator as SignatureValidator;
 $pass_signature = true;
 
 // set LINE channel_access_token and channel_secret
-$channel_access_token = "O6PTlQS+V4xtdCV6LkvntWQe10XxbtDgk8GHMiMLrhs7JUQlpa0XRUCz2Aw6KqiaCXa6aQke5foleuvjmp7uFL25FsvR3w2DJMJIQpmT22iFchY+Hro/flL8hrC69tmnr4NHzOhQS/0cQ+wYW8saEwdB04t89/1O/w1cDnyilFU=";
-$channel_secret = "fae3aa9a6f4ed1e3177e50ce30e93076";
+$channel_access_token = "";
+$channel_secret = "";
 
 // inisiasi objek bot
 $httpClient = new CurlHTTPClient($channel_access_token);
@@ -31,7 +31,7 @@ $app->get('/', function($req, $res)
 });
 
 // buat route untuk webhook
-$app->post('https://jadwalblueice.herokuapp.com/index.php/webhook', function ($request, $response) use ($bot, $pass_signature)
+$app->post('/webhook', function ($request, $response) use ($bot, $pass_signature)
 {
     // get request body and line signature header
     $body        = file_get_contents('php://input');
@@ -54,37 +54,7 @@ $app->post('https://jadwalblueice.herokuapp.com/index.php/webhook', function ($r
     }
 
     // kode aplikasi nanti disini
-    $data = json_decode($body, true);
-    if(is_array($data['events'])){
-        foreach ($data['events'] as $event)
-        {
-            if ($event['type'] == 'message')
-            {
-                if($event['message']['type'] == 'text')
-                {
-                    // send same message as reply to user
-                    $bot->replyText($replyToken, 'ini pesan balasan');
 
-                    // or we can use replyMessage() instead to send reply message
-                    // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
-                    // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
-
-                    return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
-                }
-            }
-        }
-    }
-
-});
-
-$app->get('/pushmessage', function($req, $res) use ($bot)
-{
-    // send push message to user
-    $userId = 'Ua643213a694fb82bf08dad6729881fe4';
-    $textMessageBuilder = new TextMessageBuilder('Halo, ini pesan push');
-    $result = $bot->pushMessage($userId, $textMessageBuilder);
-   
-    return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 });
 
 $app->run();

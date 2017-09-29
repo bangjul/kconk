@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6759fafcd3f1e75271c2333338b861e7",
+    "content-hash": "70811e81d57c8c7b019776d8b46c3969",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -39,16 +39,16 @@
         },
         {
             "name": "linecorp/line-bot-sdk",
-            "version": "2.1.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/line/line-bot-sdk-php.git",
-                "reference": "eadce5e8cfe51ee85e0fcd368e42d3d2dc5b56f8"
+                "reference": "38528aaa3a1abc2809974ab65cdcb7579f9eb927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/line/line-bot-sdk-php/zipball/eadce5e8cfe51ee85e0fcd368e42d3d2dc5b56f8",
-                "reference": "eadce5e8cfe51ee85e0fcd368e42d3d2dc5b56f8",
+                "url": "https://api.github.com/repos/line/line-bot-sdk-php/zipball/38528aaa3a1abc2809974ab65cdcb7579f9eb927",
+                "reference": "38528aaa3a1abc2809974ab65cdcb7579f9eb927",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "line",
                 "sdk"
             ],
-            "time": "2017-05-31T10:11:31+00:00"
+            "time": "2017-09-20T10:22:04+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -361,7 +361,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "7.1.8"
+        "php": "^7.1"
     },
     "platform-dev": []
 }
