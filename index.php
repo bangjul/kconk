@@ -92,4 +92,16 @@ $app->get('/pushmessage', function($req, $res) use ($bot)
     return $res->withJson($result2->getJSONDecodedBody(), $result2->getHTTPStatus());
 });
 
+$app->get('/multicast', function($req, $res) use ($bot)
+{
+    // list of users
+    $userList = [
+        'Ua643213a694fb82bf08dad6729881fe4'];
+
+    // send multicast message to user
+    $textMessageBuilder = new TextMessageBuilder('Halo, ini pesan multicast');
+    $result = $bot->multicast($userList, $textMessageBuilder);
+   
+    return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+});
 $app->run();
