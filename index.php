@@ -73,7 +73,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                         $profile    = $getprofile->getJSONDecodedBody();
                         $greetings  = new TextMessageBuilder("Halo, ".$profile['displayName']);
 
-                        $result = $bot->replyMessage($event['replyToken'],$event['message']['text']);
+                        $result = $bot->replyMessage($event['replyToken'], $greetings);
                         return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 
                     } 
