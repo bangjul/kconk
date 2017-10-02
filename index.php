@@ -88,7 +88,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     //message from single user
                     if($event['message']['type'] == 'text')
                         {
-                            if($message['text'] == "hallo")
+                            if($event['message']['text'] == "hallo")
                             {
                                 $textMessageBuilder = new TextMessageBuilder('hallo');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
