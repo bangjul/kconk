@@ -88,9 +88,10 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     //message from single user
                     if($event['message']['type'] == 'text')
                         {
-                            if($event['message']['text'] == "hallo")
+                            if($event['message']['text'] == "hallo" || $event['message']['text'] == "hy" || $event['message']['text'] == "Hallo" || $event['message']['text'] == "halo" || $event['message']['text'] == "HALLO" )
                             {
-                                $textMessageBuilder = new TextMessageBuilder('hallo');
+                                $profile    = $getprofile->getJSONDecodedBody();
+                                $textMessageBuilder = new TextMessageBuilder('hallo'.$profile['displayName']);
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
@@ -104,7 +105,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                                 //$result = $bot->replyText($event['replyToken'], $event['message']['text']);
 
                                 // or we can use replyMessage() instead to send reply message
-                                $textMessageBuilder = new TextMessageBuilder('ini pesan1');
+                                $textMessageBuilder = new TextMessageBuilder('maaf saya belum di ajari kata itu');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
