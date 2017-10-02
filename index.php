@@ -165,7 +165,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                                 return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 
                             }
-                            else if($event['message']['text'] == 'Terima kasih' || $event['message']['text'] == 'terima kasih' || $event['message']['text'] == 'sekelangkong')
+                            else if($event['message']['text'] == 'Terimakasih' || $event['message']['text'] == 'terimakasih' || $event['message']['text'] == 'sekelangkong' || $event['message']['text'] == 'Thanks')
                             {
                                 
                                 $textMessageBuilder = new TextMessageBuilder('sama-sama '.$profile['displayName']);
