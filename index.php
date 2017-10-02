@@ -88,8 +88,10 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     //message from single user
                     if($event['message']['type'] == 'text')
                         {
-                            if($event['message']['text'] == "hallo" || $event['message']['text'] == "hy" || $event['message']['text'] == "Hallo" || $event['message']['text'] == "halo" || $event['message']['text'] == "HALLO" )
+                            if($event['message']['text'] == "Hallo" || $event['message']['text'] == "Hy" || $event['message']['text'] == "hallo" || $event['message']['text'] == "Halo" || $event['message']['text'] == "halo" )
                             {
+                                $userId     = $event['source']['userId'];
+                                $getprofile = $bot->getProfile($userId);
                                 $profile    = $getprofile->getJSONDecodedBody();
                                 $textMessageBuilder = new TextMessageBuilder('hallo'.$profile['displayName']);
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
