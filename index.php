@@ -189,6 +189,19 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                                 return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 
                             }
+                            else if($event['message']['text'] == "Siapa nama kamu?")
+                            {
+                                $userId     = $event['source']['userId'];
+                                $getprofile = $bot->getProfile($userId);
+                                $profile    = $getprofile->getJSONDecodedBody();
+                                $textMessageBuilder = new TextMessageBuilder('hallo tretan '.$profile['displayName']. ' nama saya Kconk dari Madura');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
                             else
                             {
                                 // send same message as reply to user
