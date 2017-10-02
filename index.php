@@ -91,7 +91,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                             if($event['message']['text'] == "Info" || $event['message']['text'] == "info" || $event['message']['text'] == "INFO")
                             {
                                 
-                                $textMessageBuilder = new TextMessageBuilder('ada yang bisa kconk bantu? <br> contoh : jadwal salat hari ini');
+                                $textMessageBuilder = new TextMessageBuilder('ada yang bisa kconk bantu? '.<br>.' contoh : jadwal salat hari ini');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
@@ -113,7 +113,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                             else if($event['message']['text'] == 'bangkalan' || $event['message']['text'] == 'Bangkalan')
                             {
                                 
-                                $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb. <br> ini nih jadwal salat di Bangkalan <br> jangan sampai kelewatan ya! <br> subuh : 03.58 WIB <br> Dzuhur : 11.21 WIB <br> Ashar : 14.28 WIB <br> Maghrib : 17.26 WIB <br> Isya : 18.35 WIB');
+                                $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb. '.<br>.' ini nih jadwal salat di Bangkalan '.<br>.' jangan sampai kelewatan ya! '.<br>.' subuh : 03.58 WIB '.<br>.' Dzuhur : 11.21 WIB '.<br>.' Ashar : 14.28 WIB '.<br>.' Maghrib : 17.26 WIB '.<br>.' Isya : 18.35 WIB');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
@@ -171,7 +171,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                             $contentURL  = $basePath."/content/".$event['message']['id'];
                             $contentType = ucfirst($event['message']['type']);
                             $result = $bot->replyText($event['replyToken'],
-                                $contentType. " yang kamu kirim bisa diakses dari link:<br> " . $contentURL);
+                                $contentType. " yang kamu kirim bisa diakses dari link:'.<br>.' " . $contentURL);
 
                             return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
                         }
