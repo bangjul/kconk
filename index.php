@@ -91,7 +91,18 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                             if($event['message']['text'] == "Info" || $event['message']['text'] == "info" || $event['message']['text'] == "INFO")
                             {
                                 
-                                $textMessageBuilder = new TextMessageBuilder('ada yang bisa kconk bantu?   contoh : jadwal salat hari ini');
+                                $textMessageBuilder = new TextMessageBuilder('ada yang bisa kconk bantu?   contoh : jadwal salat hari ini.    untuk list kota di madura ketik : list kota ');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == 'list kota' || $event['message']['text'] == 'List kota')
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('Bangkalan, Sampang, Pamekasan, Sumenep');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
@@ -110,10 +121,43 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                                 return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 
                             }
-                            else if($event['message']['text'] == 'bangkalan' || $event['message']['text'] == 'Bangkalan')
+                            else if($event['message']['text'] == 'bangkalan' || $event['message']['text'] == 'Bangkalan' || $event['message']['text'] == 'Bkl')
                             {
                                 
                                 $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb.   ini nih jadwal salat di Bangkalan   jangan sampai kelewatan ya!   subuh : 03.58 WIB   Dzuhur : 11.21 WIB   Ashar : 14.28 WIB   Maghrib : 17.26 WIB   Isya : 18.35 WIB');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == 'sampang' || $event['message']['text'] == 'Sampang' || $event['message']['text'] == 'Spg')
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb.   ini nih jadwal salat di Sampang   jangan sampai kelewatan ya!   subuh : 03.57 WIB   Dzuhur : 11.19 WIB   Ashar : 14.27 WIB   Maghrib : 17.24 WIB   Isya : 18.33 WIB');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == 'pamekasan' || $event['message']['text'] == 'Pamekasan' || $event['message']['text'] == 'Pmk')
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb.   ini nih jadwal salat di Pamekasan   jangan sampai kelewatan ya!   subuh : 03.56 WIB   Dzuhur : 11.18 WIB   Ashar : 14.26 WIB   Maghrib : 17.23 WIB   Isya : 18.32 WIB');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == 'sumenep' || $event['message']['text'] == 'Sumenep' || $event['message']['text'] == 'Smp')
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb.   ini nih jadwal salat di Sumenep   jangan sampai kelewatan ya!   subuh : 03.54 WIB   Dzuhur : 11.16 WIB   Ashar : 14.24 WIB   Maghrib : 17.21 WIB   Isya : 18.31 WIB');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
