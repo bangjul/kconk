@@ -88,16 +88,31 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     //message from single user
                     if($event['message']['type'] == 'text')
                         {
-                            // send same message as reply to user
-                            //$result = $bot->replyText($event['replyToken'], $event['message']['text']);
+                            if($message['text'] == 'hallo')
+                            {
+                                $textMessageBuilder = new TextMessageBuilder('hallo');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
 
-                            // or we can use replyMessage() instead to send reply message
-                            $textMessageBuilder = new TextMessageBuilder('ini pesan balasan');
-                            $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
-                            // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
-                            // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 
-                            return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+                            }
+                            else
+                            {
+                                // send same message as reply to user
+                                //$result = $bot->replyText($event['replyToken'], $event['message']['text']);
+
+                                // or we can use replyMessage() instead to send reply message
+                                $textMessageBuilder = new TextMessageBuilder('ini pesan1');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            
                         }
                         if(
                             $event['message']['type'] == 'image' or
