@@ -88,12 +88,45 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     //message from single user
                     if($event['message']['type'] == 'text')
                         {
-                            if($event['message']['text'] == "Hallo" || $event['message']['text'] == "Hy" || $event['message']['text'] == "hallo" || $event['message']['text'] == "Halo" || $event['message']['text'] == "halo" )
+                            if($event['message']['text'] == "Info" || $event['message']['text'] == "info" || $event['message']['text'] == "INFO")
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('ada yang bisa kconk bantu? \n contoh : jadwal salat hari ini');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == 'jadwal salat hari ini' || $event['message']['text'] == 'Jadwal salat hari ini')
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('di kota apa? (contoh : sampang)');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == 'bangkalan' || $event['message']['text'] == 'Bangkalan')
+                            {
+                                
+                                $textMessageBuilder = new TextMessageBuilder('Assalamualaikum Wr.Wb. \n ini nih jadwal salat di Bangkalan \n jangan sampai kelewatan ya! \n subuh : 03.58 WIB \n Dzuhur : 11.21 WIB \n Ashar : 14.28 WIB \n Maghrib : 17.26 WIB \n Isya : 18.35 WIB');
+                                $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+
+                            }
+                            else if($event['message']['text'] == "Hallo" || $event['message']['text'] == "Hy" || $event['message']['text'] == "hallo" || $event['message']['text'] == "Halo" || $event['message']['text'] == "halo" || $event['message']['text'] == "Hi" || $event['message']['text'] == "Hii" || $event['message']['text'] == "hi" || $event['message']['text'] == "conk")
                             {
                                 $userId     = $event['source']['userId'];
                                 $getprofile = $bot->getProfile($userId);
                                 $profile    = $getprofile->getJSONDecodedBody();
-                                $textMessageBuilder = new TextMessageBuilder('hallo'.$profile['displayName']);
+                                $textMessageBuilder = new TextMessageBuilder('hallo tretan '.$profile['displayName']);
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
@@ -107,7 +140,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                                 //$result = $bot->replyText($event['replyToken'], $event['message']['text']);
 
                                 // or we can use replyMessage() instead to send reply message
-                                $textMessageBuilder = new TextMessageBuilder('maaf saya belum di ajari kata itu');
+                                $textMessageBuilder = new TextMessageBuilder('itu artinya apa ya tretan? maaf kconk belum di ajari kata itu');
                                 $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
